@@ -1,4 +1,4 @@
-# Interview questions :smile:
+# Golang Interview questions  :smile::simple_smile::simple_smile:
 ### 1. About go mod init and go mod tidy 
 https://www.youtube.com/watch?v=Z1VhG7cf83M
 ### 2.- Explain how Go path works?
@@ -131,13 +131,13 @@ Because it doesn't need a switch to kernel context, rescheduling a goroutine is 
 ### 17.How Go’s garbage collection works?
 it uses mark and sweep algorithm if the machine is a multiprocessor, the collector runs on a separate CPU core in parallel with the main program
 Go programs have hundreds of thousands of stacks. They are managed by the Go scheduler and are always preempted at GC safepoints. The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a local operation so it scales fairly well.
-https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/
+https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/ <br />
 https://golang.org/doc/faq#garbage_collection
 ### 18.how to use channels as a work control mechanism
  (like for/select, or separately the quitChan pattern)
 
 ### 19. What is the difference between goroutine and os thread?
-| goroutine                                       | os thread
+| __goroutine__                                       | __os thread__
   -------------                                   | -------------
 - Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__ eg :=1000thread == 2GB
 - go routine are scheduled by go runtime            |  OS threads are scheduled by the OS kernel
