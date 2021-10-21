@@ -1,24 +1,21 @@
 # Interview questions :smile:
 ### 1. About go mod init and go mod tidy 
 https://www.youtube.com/watch?v=Z1VhG7cf83M
-### 2.- Explain how Go path works?
-The goal of the GOPATH is to centralize all packages into one common workspace. 
-The GOPATH environment variable specifies the location of your workspace. 
-If no GOPATH is set, it is assumed to be $HOME/go
-The Go path is used to resolve import statements
-To know what is your current GOPATH is running
-        ```
-        go env GOPATH
-        //Changing the GOPATH old way of doing
-        export GOPATH=$HOME/another-go-path
-        //new way 
-        go mod init github.com/<githubusername>/yourdir or repo
-        ```
-Libraries installed using go get will be put in $GOPATH/src
-Commands installed using go get will be put in $GOPATH/bin
+### 2. Explain how Go path works?
+- The goal of the GOPATH is to centralize all packages into one common workspace and is used to resolve import statements
+- The GOPATH environment variable specifies the location of your workspace, If no GOPATH is set, it is assumed to be $HOME/go 
+- To know what is your current GOPATH is running
+        ```go env GOPATH``` 
+  - Changing the GOPATH old way of doing
+        ```export GOPATH=$HOME/another-go-path``` <br />
+    - new way 
+           ```go mod init github.com/<githubusername>/yourdir or repo```
+
+- Libraries installed using go get will be put in $GOPATH/sr commands installed using go get will be put in $GOPATH/bin
 ### 3.Explain the difference between switch and select in Golang?
-A select is only used with channels and  will choose multiple valid options at random, while a switch will go in sequence(order one by one ) and would require a fallthrough to match multiple.
-Note that a switch can also go over types for interfaces when used with the keyword .(type)
+- A select is only used with channels and  will choose multiple valid options at random 
+- while a switch will go in sequence(order one by one ) and would require a fallthrough to match multiple.
+- Note that a switch can also go over types for interfaces when used with the keyword .(type)
 https://play.golang.org/p/2_LMWEEghOl
           
 ### 4.What's the difference between new() and make() functions in Go?
@@ -26,7 +23,7 @@ https://play.golang.org/p/2_LMWEEghOl
 ### 6.How do you copy a slice, a map, struct and an interface?
 https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
-       needs to update later
+needs to update later
 ### 8.Explain Concurrency, when to use it and parallelism?
 __Dealing or runnig multiple functions at the same time__
 Concurrency is when two or more tasks  or func can start, run, and complete their tasks in __overlapping time periods__. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
@@ -49,7 +46,7 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
     import "sync/atomic"
     ```
     
-    q1. why do you use Go ? Ans := Concurrency and better performance 
+- why do you use Go ? Ans := Concurrency and better performance 
 ### 11.in case of using net/http. how to handle http methods and path parameters?
     methods can be handled by 
                         
