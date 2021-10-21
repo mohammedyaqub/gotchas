@@ -27,15 +27,16 @@ https://play.golang.org/p/2_LMWEEghOl
 https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
        needs to update later
-- Concurrency:
-### 8.Explain Concurrency & when to use it?
-    Dealing or runnig multiple functions at the same time
-    or Concurrency is when two or more tasks  or func can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+### 8.Explain Concurrency, when to use it and parallelism?
+__Dealing or runnig multiple functions at the same time__
+Concurrency is when two or more tasks  or func can start, run, and complete their tasks in __overlapping time periods__. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+__It is used in server programming to response multiple requests at same time from various clients__
+for eg:- getting data from multiple 1000 of clients and manipulating with data  
 
-    Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
-    independently executing of functions
-    or 
-    Doing more than one thing at a time.
+Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
+independently executing of functions
+or 
+Doing more than one thing at a time.
 ### 9.How would you allow communication between goroutines in Go? A
 Ans:= its done through using channels
 Don't communicate by sharing memory(posix shared memory) share memory by communicating means a thread share same address space within a process so the data is shared among them but instead use message-passing between goroutines (green threads) via channels 
@@ -138,8 +139,8 @@ https://golang.org/doc/faq#garbage_collection
 ### 19. What is the difference between goroutine and os thread?
 | goroutine     | os thread
   ------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__
+go routine are scheduled by go runtime       |  OS threads are scheduled by the OS kernel
 * Growable Stacks __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__
 * Goroutine Scheduling 
 * GOMAXPROCS
@@ -159,9 +160,11 @@ channel is used as communication between go routines
 https://www.youtube.com/watch?v=KBZlN0izeiY
 1. Difference between Dep and GoMod
 ### 22. Why does an empty interface can be used for all types ?  
-    An interface{} is a method set, not a field set. A type implements an interface if it's methods include the methods of that interface. Since empty interface doesn't have any methods, all types implement it.
+An interface{} is a method set, not a field set. A type implements an interface if it's 
+methods include the methods of that interface.
+Since empty interface doesn't have any methods, all types implement it.
 ### 23. Why is go’s memory footprint considerably less than Java’s ?
-    https://www.quora.com/Why-is-Golangs-memory-usage-so-much-better-than-Javas
+https://www.quora.com/Why-is-Golangs-memory-usage-so-much-better-than-Javas
 4. Best practises when dealing with goroutines ? 
 ### 24.Why would you prefer to use an empty struct{}? Provide some examples of the good use of the empty struct{}.
         You would use an empty struct when you would want to save some memory. 
