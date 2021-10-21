@@ -1,5 +1,4 @@
 # interview questions :smile:
-Markup :  - - - -
 ### 1. About go mod init and go mod tidy 
 https://www.youtube.com/watch?v=Z1VhG7cf83M
 ### 2.- Explain how Go path works?
@@ -83,7 +82,7 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
                         }
                         ``` 
 
-### Buffered vs Unbuffered channels
+### 12.Buffered vs Unbuffered channels
     buffer channel removes synchronization between go routines
     unbuffer channel provide synchronization between go routines 
     ```
@@ -115,52 +114,52 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
         ```
     If you are trying to read data from a channel but channel does not have a value available with it, it blocks the current goroutine and run other in a hope that some goroutine will push a value to the channel. Hence, this read operation will be blocking. Similarly, if you are to send data to a channel, it will block current goroutine and unblock others until some goroutine reads the data from it. Hence, this send operation will be blocking.
 
-### What is a go routine
+### 13.What is a go routine
   go routine are the foundations for concurrency in Go.
   To execute the tasks independently 
   Goroutines are cooperatively scheduled, rather than relying on the kernel to manage their time sharing.
   The switch between goroutines only happens at well defined points, when an explicit call is made to the Go runtime scheduler The compiler knows the registers which are in use and saves them automatically.
 
-### Implement a map allowing concurrent access
+### 14.Implement a map allowing concurrent access
 https://stackoverflow.com/questions/11063473/map-with-concurrent-access
-### How would you implement rate limiting
+### 15.How would you implement rate limiting
 https://gobyexample.com/rate-limiting
-### Why are go routines so cheap when compared to normal threads?
+### 16.Why are go routines so cheap when compared to normal threads?
 Many goroutines are multiplexed onto a single operating system thread by the Go runtime.
 Because it doesn't need a switch to kernel context, rescheduling a goroutine is much cheaper than rescheduling a thread This makes goroutines cheap to create and cheap to switch between them. Tens of thousands of goroutines in a single process are the normal, hundreds of thousands are not unexpected.
-
-
-### How Go’s garbage collection works?
+### 17.How Go’s garbage collection works?
 it uses mark and sweep algorithm if the machine is a multiprocessor, the collector runs on a separate CPU core in parallel with the main program
 Go programs have hundreds of thousands of stacks. They are managed by the Go scheduler and are always preempted at GC safepoints. The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a local operation so it scales fairly well.
 https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/
 https://golang.org/doc/faq#garbage_collection
-
-
-### how to use channels as a work control mechanism
+### 18.how to use channels as a work control mechanism
  (like for/select, or separately the quitChan pattern)
 
-1. What is the difference between goroutine and os thread?
-        The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads, and whichever goroutines blocked on I/O are handled efficiently using go runtime  facilities. Goroutines have tiny stacks that grow as needed, so it is practical to have hundreds of thousands of goroutines in your program. This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
-        In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
+### 19. What is the difference between goroutine and os thread?
+*bullet list
+Growable Stacks
+Goroutine Scheduling
+GOMAXPROCS
+The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads, and whichever goroutines blocked on I/O are handled efficiently using go runtime  facilities. Goroutines have tiny stacks that grow as needed, so it is practical to have hundreds of thousands of goroutines in your program. This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
+In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
 
-###  How goroutines works
+###  20.How goroutines works
 Syntactically, a go statement is an ordinary function or method call prefixed by the keyword go.
 A go statement causes the function to be called in a newly created goroutine
 GoRoutines are a Golang wrapper on top of threads and managed by Go runtime rather than the operating system. Go runtime has the responsibility to assign or withdraw memory resources from Goroutines. A Goroutine is much like a thread to accomplish multiple tasks, but consumes fewer resources than OS threads
 it follows m:n scheduling, because it multiplexes (or schedules) m goroutines on n OS threads
 GOMAXPROCS to determine how many OS threads may be actively executing Go code
 Its default value is the number of CPUs on the machine, so on a machine with 8 CPUs, the scheduler will schedule Go code on up to 8 OS threads at once
-### What is channel and how it works
+### 21.What is channel and how it works
 channel is used as communication between go routines 
 https://www.youtube.com/watch?v=KBZlN0izeiY
 1. Difference between Dep and GoMod
-### 2. Why does an empty interface can be used for all types ?  
+### 22. Why does an empty interface can be used for all types ?  
     An interface{} is a method set, not a field set. A type implements an interface if it's methods include the methods of that interface. Since empty interface doesn't have any methods, all types implement it.
-###  Why is go’s memory footprint considerably less than Java’s ?
+### 23. Why is go’s memory footprint considerably less than Java’s ?
     https://www.quora.com/Why-is-Golangs-memory-usage-so-much-better-than-Javas
 4. Best practises when dealing with goroutines ? 
-### Why would you prefer to use an empty struct{}? Provide some examples of the good use of the empty struct{}.
+### 24.Why would you prefer to use an empty struct{}? Provide some examples of the good use of the empty struct{}.
         You would use an empty struct when you would want to save some memory. 
         Empty structs do not take any memory for its value.
         When implementing a data set:
@@ -176,5 +175,5 @@ https://www.youtube.com/watch?v=KBZlN0izeiY
         
        https://play.golang.org/p/VHu3dZLeDtM
 
-### How would you implement a stack and a queue in Go? Explain and provide code examples.
+### 25.How would you implement a stack and a queue in Go? Explain and provide code examples.
 https://play.golang.org/p/eX6gIurp6Ug
