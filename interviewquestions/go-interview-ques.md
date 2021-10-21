@@ -137,11 +137,14 @@ https://golang.org/doc/faq#garbage_collection
  (like for/select, or separately the quitChan pattern)
 
 ### 19. What is the difference between goroutine and os thread?
-| goroutine     | os thread
-  ------------- | -------------
-Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__
-go routine are scheduled by go runtime       |  OS threads are scheduled by the OS kernel
-OS thread has a fixed-size block of memory (often as large as 2MB) for its stack
+| goroutine                                       | os thread
+  -------------                                   | -------------
+- Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__ eg :=1000thread == 2GB
+- go routine are scheduled by go runtime            |  OS threads are scheduled by the OS kernel
+switch between go routine is not much time consuming|switching between thread is time consuming      compared to go routine which slow down  
+- whenever the go routine is blocked on os thread the 
+
+
 The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads, and whichever goroutines blocked on I/O are handled efficiently using go runtime  facilities. Goroutines have tiny stacks that grow as needed, so it is practical to have hundreds of thousands of goroutines in your program. This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
 In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
 
