@@ -39,8 +39,8 @@ or
 Doing more than one thing at a time.
 ### 9.How would you allow communication between goroutines in Go? A
 Ans:= its done through using channels
-Don't communicate by sharing memory(posix shared memory) share memory by communicating means a thread share same address space within a process so the data is shared among them but instead use message-passing between goroutines (green threads) via channels 
-New or updated values that are assigned to variable before the channel send are allow to be observed after the channel reading by some other go routine if you want to guarantee(Unbuffer channel) that those values are observed, you have to make sure that no one else can write to those variables in between the write and the read operations to the variable
+- Don't communicate by sharing memory(posix shared memory) share memory by communicating means a thread share same address space within a process so the data is shared among them but instead use message-passing between goroutines (green threads) via channels <br />
+- New or updated values that are assigned to variable before the channel send are allow to be observed after the channel reading by some other go routine if you want to guarantee(Unbuffer channel) that those values are observed, you have to make sure that no one else can write to those variables in between the write and the read operations to the variable
 ### 10.How would you manage their access to resources?
 Programs that modify data being simultaneously accessed by multiple goroutines must serialize such access.
     ```
