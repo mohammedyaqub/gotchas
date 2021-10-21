@@ -22,7 +22,7 @@ https://play.golang.org/p/2_LMWEEghOl
 - make is used only for slice map and channels
 - New only returns pointers to initialised memory
 * __the only real use for new is to directly return a pointer to concrete types                       like p := new(uint64), new(struct_name) is the same as &struct_name{} and it's even 2 bytes shorter__
-https://play.golang.org/p/IZhanQyF-FF
+https://play.golang.org/p/IZhanQyF-FF  <br />
 https://dave.cheney.net/2014/08/17/go-has-both-make-and-new-functions-what-gives by dev cheney
  ### 5.What is a closure in Golang?
 ### 6.How do you copy a slice, a map, struct and an interface?
@@ -30,12 +30,12 @@ https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
 needs to update later
 ### 8.Explain Concurrency, when to use it and parallelism?
-__Dealing or runnig multiple functions at the same time__
-Concurrency is when two or more tasks  or func can start, run, and complete their tasks in __overlapping time periods__. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
-__It is used in server programming to response multiple requests at same time from various clients__
+- __Dealing or runnig multiple functions at the same time__
+- Concurrency is when two or more tasks  or func can start, run, and complete their tasks in __overlapping time periods__. It doesn't necessarily mean they'll ever both be running at the same instant. For example, multitasking on a single-core machine.
+- __It is used in server programming to response multiple requests at same time from various clients__
 for eg:- getting data from multiple 1000 of clients and manipulating with data  
 
-Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
+- Parallelism is when tasks literally run at the same time, e.g., on a multicore processor.
 independently executing of functions
 or 
 Doing more than one thing at a time.
@@ -87,8 +87,8 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
                         ``` 
 
 ### 12.Buffered vs Unbuffered channels
-    buffer channel removes synchronization between go routines
-    unbuffer channel provide synchronization between go routines 
+- buffer channel removes synchronization between go routines
+- unbuffer channel provide synchronization between go routines 
     ```
                 package main
 
@@ -116,24 +116,30 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
                 fmt.Println("User created: ", <-done)
             }
         ```
-    If you are trying to read data from a channel but channel does not have a value available with it, it blocks the current goroutine and run other in a hope that some goroutine will push a value to the channel. Hence, this read operation will be blocking. Similarly, if you are to send data to a channel, it will block current goroutine and unblock others until some goroutine reads the data from it. Hence, this send operation will be blocking.
+If you are trying to read data from a channel but channel does not have a value available with it,
+it blocks the current goroutine and run other in a hope that some goroutine will push a value to the channel. 
+Hence, this read operation will be blocking. Similarly, if you are to send data to a channel,
+it will block current goroutine and unblock others until some goroutine  reads the data from it.
+Hence, this send operation will be blocking.
 
 ### 13.What is a go routine
-  go routine are the foundations for concurrency in Go.
-  To execute the tasks independently 
-  Goroutines are cooperatively scheduled, rather than relying on the kernel to manage their time sharing.
-  The switch between goroutines only happens at well defined points, when an explicit call is made to the Go runtime scheduler The compiler knows the registers which are in use and saves them automatically.
+- go routine are the foundations for concurrency in Go,To execute the tasks independently 
+- Goroutines are cooperatively scheduled, rather than relying on the kernel to manage their time sharing.
+- The switch between goroutines only happens at well defined points, when an explicit call is made to the Go runtime scheduler 
+- The compiler knows the registers which are in use  and saves them automatically.
 
 ### 14.Implement a map allowing concurrent access
 https://stackoverflow.com/questions/11063473/map-with-concurrent-access
 ### 15.How would you implement rate limiting
 https://gobyexample.com/rate-limiting
 ### 16.Why are go routines so cheap when compared to normal threads?
-Many goroutines are multiplexed onto a single operating system thread by the Go runtime.
-Because it doesn't need a switch to kernel context, rescheduling a goroutine is much cheaper than rescheduling a thread This makes goroutines cheap to create and cheap to switch between them. Tens of thousands of goroutines in a single process are the normal, hundreds of thousands are not unexpected.
+- Many goroutines are multiplexed onto a single operating system thread by the Go runtime.
+- Because it doesn't need a switch to kernel context, rescheduling a goroutine is much cheaper than rescheduling a thread This makes goroutines cheap to create and cheap to switch between them.
+-  Tens of thousands of goroutines in a single process are the normal, hundreds of thousands are not unexpected.
 ### 17.How Go’s garbage collection works?
-it uses mark and sweep algorithm if the machine is a multiprocessor, the collector runs on a separate CPU core in parallel with the main program
-Go programs have hundreds of thousands of stacks. They are managed by the Go scheduler and are always preempted at GC safepoints. The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a local operation so it scales fairly well.
+- It uses mark and sweep algorithm if the machine is a multiprocessor, the collector runs on a separate CPU core in parallel with the main program
+- Go programs have hundreds of thousands of stacks. They are managed by the Go scheduler and are always preempted at GC safepoints. 
+- The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a (user space not involved kernel interaction) so it scales fairly well.
 https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/ <br />
 https://golang.org/doc/faq#garbage_collection
 ### 18.how to use channels as a work control mechanism
@@ -142,14 +148,16 @@ https://golang.org/doc/faq#garbage_collection
 ### 19. What is the difference between goroutine and os thread?
 | __goroutine__                                       | __os thread__
   -------------                                   | -------------
-- Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__ eg :=1000thread == 2GB
-- go routine are scheduled by go runtime            |  OS threads are scheduled by the OS kernel
-switch between go routine is not much time consuming|switching between thread is time consuming      compared to go routine which slow down  
-- whenever the go routine is blocked on os thread the 
+1.Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__ eg :=1000thread == 2GB
+2.go routine are scheduled by go runtime            |  OS threads are scheduled by the OS kernel
+3.switch between go routine is not much time consuming|switching between thread is time consuming compared to go routine which slow down whenever the go routine is blocked on os thread the 
 
-
-The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads, and whichever goroutines blocked on I/O are handled efficiently using go runtime  facilities. Goroutines have tiny stacks that grow as needed, so it is practical to have hundreds of thousands of goroutines in your program. This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
-In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
+- The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads,
+-  whichever goroutines blocked on I/O are handled efficiently using go runtime facilities.
+-  Goroutines have tiny stacks that grow as needed and shrink, so it is practical to have hundreds of thousands of goroutines in your program. 
+-  This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
+- In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. 
+- The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
 
 ###  20.How goroutines works
 Syntactically, a go statement is an ordinary function or method call prefixed by the keyword go.
