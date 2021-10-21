@@ -1,4 +1,4 @@
-# Golang Interview questions  :smile::simple_smile::simple_smile:
+# Golang Interview questions  :smile: 
 ### 1. About go mod init and go mod tidy 
 https://www.youtube.com/watch?v=Z1VhG7cf83M
 ### 2. Explain how Go path works?
@@ -19,7 +19,12 @@ https://www.youtube.com/watch?v=Z1VhG7cf83M
 https://play.golang.org/p/2_LMWEEghOl
           
 ### 4.What's the difference between new() and make() functions in Go?
-### 5.What is a closure in Golang?
+- make is used only for slice map and channels
+- New only returns pointers to initialised memory
+* __the only real use for new is to directly return a pointer to concrete types                       like p := new(uint64), new(struct_name) is the same as &struct_name{} and it's even 2 bytes shorter__
+https://play.golang.org/p/IZhanQyF-FF
+https://dave.cheney.net/2014/08/17/go-has-both-make-and-new-functions-what-gives by dev cheney
+ ### 5.What is a closure in Golang?
 ### 6.How do you copy a slice, a map, struct and an interface?
 https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
@@ -42,8 +47,9 @@ Ans:= its done through using channels
 Programs that modify data being simultaneously accessed by multiple goroutines must serialize such access.
     ```
     import "sync"
-    and 
+    //and 
     import "sync/atomic"
+    lock:=sync.Mutex{}
     ```
     
 - why do you use Go ? Ans := Concurrency and better performance 
@@ -181,3 +187,19 @@ https://www.quora.com/Why-is-Golangs-memory-usage-so-much-better-than-Javas
 
 ### 25.How would you implement a stack and a queue in Go? Explain and provide code examples.
 https://play.golang.org/p/eX6gIurp6Ug
+
+### 26.If a map isn’t a reference variable, what is it?
+A map value is a pointer to a runtime.hmap structure
+    package main
+
+    import (
+        "fmt"
+        "unsafe"
+    )
+
+    func main() {
+        var m map[int]int
+        var p uintptr
+        fmt.Println(unsafe.Sizeof(m), unsafe.Sizeof(p)) // 8 8 (linux/amd64)
+    }
+https://dave.cheney.net/2017/04/30/if-a-map-isnt-a-reference-variable-what-is-it
