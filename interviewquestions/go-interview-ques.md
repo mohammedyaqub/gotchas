@@ -1,12 +1,12 @@
-# interview questions :smile:
+# Interview questions :smile:
 ### 1. About go mod init and go mod tidy 
 https://www.youtube.com/watch?v=Z1VhG7cf83M
 ### 2.- Explain how Go path works?
-        The goal of the GOPATH is to centralize all packages into one common workspace. 
-        The GOPATH environment variable specifies the location of your workspace. 
-        If no GOPATH is set, it is assumed to be $HOME/go
-        The Go path is used to resolve import statements
-        To know what is your current GOPATH is running
+The goal of the GOPATH is to centralize all packages into one common workspace. 
+The GOPATH environment variable specifies the location of your workspace. 
+If no GOPATH is set, it is assumed to be $HOME/go
+The Go path is used to resolve import statements
+To know what is your current GOPATH is running
         ```
         go env GOPATH
         //Changing the GOPATH old way of doing
@@ -14,8 +14,8 @@ https://www.youtube.com/watch?v=Z1VhG7cf83M
         //new way 
         go mod init github.com/<githubusername>/yourdir or repo
         ```
-        Libraries installed using go get will be put in $GOPATH/src
-        Commands installed using go get will be put in $GOPATH/bin
+Libraries installed using go get will be put in $GOPATH/src
+Commands installed using go get will be put in $GOPATH/bin
 ### 3.Explain the difference between switch and select in Golang?
 A select is only used with channels and  will choose multiple valid options at random, while a switch will go in sequence(order one by one ) and would require a fallthrough to match multiple.
 Note that a switch can also go over types for interfaces when used with the keyword .(type)
@@ -136,9 +136,14 @@ https://golang.org/doc/faq#garbage_collection
  (like for/select, or separately the quitChan pattern)
 
 ### 19. What is the difference between goroutine and os thread?
-* Growable Stacks
-* Goroutine Scheduling
+| goroutine     | os thread
+  ------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+* Growable Stacks __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__
+* Goroutine Scheduling 
 * GOMAXPROCS
+OS thread has a fixed-size block of memory (often as large as 2MB) for its stack
 The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads, and whichever goroutines blocked on I/O are handled efficiently using go runtime  facilities. Goroutines have tiny stacks that grow as needed, so it is practical to have hundreds of thousands of goroutines in your program. This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
 In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
 
