@@ -21,10 +21,15 @@ https://play.golang.org/p/2_LMWEEghOl
 ### 4.What's the difference between new() and make() functions in Go?
 - make is used only for slice map and channels
 - New only returns pointers to initialised memory
-* __the only real use for new is to directly return a pointer to concrete types                       like p := new(uint64), new(struct_name) is the same as &struct_name{} and it's even 2 bytes shorter__
+* __the only real use for new is to directly return a pointer to concrete types like p := new(uint64), new(struct_name) is the same as &struct_name{} and it's even 2 bytes shorter__
 https://play.golang.org/p/IZhanQyF-FF  <br />
 https://dave.cheney.net/2014/08/17/go-has-both-make-and-new-functions-what-gives by dev cheney
- ### 5.What is a closure in Golang?
+### 5.What is a closure in Golang?
+- Clousure is a persistent of local variable reference to a variable which has been defined in the surronding context known as its environment
+- func literal or first class func or closure instead of values passing the behaviour to func to be executed 
+https://play.golang.org/p/9CAR2aprGMo
+https://play.golang.org/p/_K-tdrX9xX6
+https://dave.cheney.net/2016/11/13/do-not-fear-first-class-functions
 ### 6.How do you copy a slice, a map, struct and an interface?
 https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
