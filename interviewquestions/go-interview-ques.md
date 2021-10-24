@@ -128,7 +128,7 @@ it will block current goroutine and unblock others until some goroutine  reads t
 Hence, this send operation will be blocking.
 
 ### 13.What is a go routine
-- go routine are the foundations for concurrency in Go,To execute the tasks independently 
+- go routine are user space threads they are the foundations for concurrency in Go,To execute the tasks independently 
 - Goroutines are cooperatively scheduled, rather than relying on the kernel to manage their time sharing.
 - The switch between goroutines only happens at well defined points, when an explicit call is made to the Go runtime scheduler 
 - The compiler knows the registers which are in use  and saves them automatically.
