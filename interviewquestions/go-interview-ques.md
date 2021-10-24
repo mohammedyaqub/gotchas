@@ -147,6 +147,7 @@ https://gobyexample.com/rate-limiting
 - The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a (user space not involved kernel interaction) so it scales fairly well.
 https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/ <br />
 https://golang.org/doc/faq#garbage_collection
+https://www.youtube.com/watch?v=q4HoWwdZUHs
 ### 18.how to use channels as a work control mechanism
  (like for/select, or separately the quitChan pattern)
 
