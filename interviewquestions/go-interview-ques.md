@@ -155,17 +155,24 @@ https://golang.org/doc/faq#garbage_collection
   -------------                                   | -------------
 1.Growable Stacks and go routine size is approx 2kb | __OS thread has a fixed-size block of memory (often as large as 2MB) for its stack__ eg :=1000thread == 2GB
 2.go routine are scheduled by go runtime            |  OS threads are scheduled by the OS kernel
-3.switch between go routine is not much time consuming|switching between thread is time consuming compared to go routine which slow down whenever the go routine is blocked on os thread the 
+3.switch between go routine is not much time consuming approx 10ns|switching between thread is time consuming approx in micro seconds compared to go routine which slow down whenever the go routine is blocked on os thread the 
 
 - The Go runtime multiplexes a potentially large number of goroutines onto a smaller number of OS threads,
--  whichever goroutines blocked on I/O are handled efficiently using go runtime facilities.
--  Goroutines have tiny stacks that grow as needed and shrink, so it is practical to have hundreds of thousands of goroutines in your program. 
--  This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
+- whichever goroutines blocked on I/O are handled efficiently using go runtime facilities.
+- Goroutines have tiny stacks that grow as needed and shrink, so it is practical to have hundreds of thousands of goroutines in your program. 
+- This allows the programmer to use concurrency to structure their program without being overly concerned with thread overhead.
 - In go routines “Green threads”, which means the Go runtime does the scheduling, not the OS. 
 - The runtime multiplexes the goroutines onto real OS threads, the number of which is controlled by GOMAXPROCS. Typically you’ll want to set this to the number of cores on your system, to maximize potential parellelism.
 
 ###  20.How goroutines works
-Syntactically, a go statement is an ordinary function or method call prefixed by the keyword go.
+- Go routines are userspace threads created and managed by go runtime
+- A prefix keyword with go before calling a func creates new go routines   
+- The scheduler is responsible for multiplexing m number of go routines to n number of os thread 
+- whenever there is call to blocking in go routine the runtime scheduler removes the current go routine 
+which is running on os thread and set to it in waiting state and effectively freeing up the os thread 
+and schedule different go routine 
+- Here the point is current go routine was blocked not the os thread because they are expensive so go runtime try not to manage 
+- Syntactically, a go statement is an ordinary function or method call prefixed by the keyword go.
 A go statement causes the function to be called in a newly created goroutine
 GoRoutines are a Golang wrapper on top of threads and managed by Go runtime rather than the operating system. Go runtime has the responsibility to assign or withdraw memory resources from Goroutines. A Goroutine is much like a thread to accomplish multiple tasks, but consumes fewer resources than OS threads
 it follows m:n scheduling, because it multiplexes (or schedules) m goroutines on n OS threads
