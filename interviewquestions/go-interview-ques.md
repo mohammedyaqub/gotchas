@@ -172,6 +172,7 @@ https://golang.org/doc/faq#garbage_collection
 which is running on os thread and set to it in waiting state and effectively freeing up the os thread 
 and schedule different go routine 
 - Here the point is current go routine was blocked not the os thread because they are expensive so go runtime try not to manage 
+- Each go routine has their own stack and runq If a thread itself blocked on sys call the a new thread will be created and previous thread handover the runq 
 - Syntactically, a go statement is an ordinary function or method call prefixed by the keyword go.
 A go statement causes the function to be called in a newly created goroutine
 GoRoutines are a Golang wrapper on top of threads and managed by Go runtime rather than the operating system. Go runtime has the responsibility to assign or withdraw memory resources from Goroutines. A Goroutine is much like a thread to accomplish multiple tasks, but consumes fewer resources than OS threads
