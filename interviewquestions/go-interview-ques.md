@@ -225,3 +225,8 @@ A map value is a pointer to a runtime.hmap structure
         fmt.Println(unsafe.Sizeof(m), unsafe.Sizeof(p)) // 8 8 (linux/amd64)
     }
 https://dave.cheney.net/2017/04/30/if-a-map-isnt-a-reference-variable-what-is-it
+### 27.If slices are backed by arrays and arrays themselves are of fixed length then how come a slice is of dynamic length ?
+❌ 
+- what happens under the hood is, when new elements are appended to the slice, a new array is created.
+-  The elements of the existing array are copied to this new array and a new slice reference for this new array is returned. The capacity of the new slice is now twice that of the old slice
+https://play.golang.org/p/pcLCSsQzNaT
