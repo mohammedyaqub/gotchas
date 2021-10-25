@@ -63,11 +63,6 @@ Programs that modify data being simultaneously accessed by multiple goroutines m
                         
                          ```
                         if r.URL.Path != "/" {
-                                    http.NotFound(w, r)
-                                    return
-                                }
-                        
-                        if r.URL.Path != "/" {
                                 http.NotFound(w, r)
                                 return
                             }
@@ -226,7 +221,9 @@ A map value is a pointer to a runtime.hmap structure
     }
 https://dave.cheney.net/2017/04/30/if-a-map-isnt-a-reference-variable-what-is-it
 ### 27.If slices are backed by arrays and arrays themselves are of fixed length then how come a slice is of dynamic length ?
-❌ 
 - what happens under the hood is, when new elements are appended to the slice, a new array is created.
 -  The elements of the existing array are copied to this new array and a new slice reference for this new array is returned. The capacity of the new slice is now twice that of the old slice
+-  Memory Optimisation
+Slices hold a reference to the underlying array. As long as the slice is in memory, the array cannot be garbage collected. This might be of concern when it comes to memory management. Lets assume that we have a very large array and we are interested in processing only a small part of it. Henceforth we create a slice from that array and start processing the slice. The important thing to be noted here is that the array will still be in memory since the slice references it.
+- One way to solve this problem is to use the copy function func copy(dst, src []T) int to make a copy of that slice. This way we can use the new slice and the original array can be garbage collected.
 https://play.golang.org/p/pcLCSsQzNaT
