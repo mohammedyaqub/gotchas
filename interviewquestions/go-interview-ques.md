@@ -176,8 +176,8 @@ it follows m:n scheduling, because it multiplexes (or schedules) m goroutines on
 GOMAXPROCS to determine how many OS threads may be actively executing Go code
 Its default value is the number of CPUs on the machine, so on a machine with 8 CPUs, the scheduler will schedule Go code on up to 8 OS threads at once
 ### 21.What is channel and how it works
-https://medium.com/rungo/anatomy-of-channels-in-go-concurrency-in-go-1ec336086adb
-channel is used as communication between go routines 
+https://medium.com/rungo/anatomy-of-channels-in-go-concurrency-in-go-1ec336086adb <br>
+channel is used as communication between go routines <br>
 https://www.youtube.com/watch?v=KBZlN0izeiY
 1. Difference between Dep and GoMod
 ### 22. Why does an empty interface can be used for all types ?  
