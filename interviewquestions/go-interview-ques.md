@@ -27,9 +27,9 @@ https://dave.cheney.net/2014/08/17/go-has-both-make-and-new-functions-what-gives
 ### 5.What is a closure in Golang?
 - Clousure is a persistent of local variable reference to a variable which has been defined in the surronding context known as its environment
 - func literal or first class func or closure instead of values passing the behaviour to func to be executed 
-https://play.golang.org/p/9CAR2aprGMo
-https://play.golang.org/p/_K-tdrX9xX6
-https://dave.cheney.net/2016/11/13/do-not-fear-first-class-functions
+https://play.golang.org/p/9CAR2aprGMo<br>
+https://play.golang.org/p/_K-tdrX9xX6<br>
+https://dave.cheney.net/2016/11/13/do-not-fear-first-class-functions<br>
 ### 6.How do you copy a slice, a map, struct and an interface?
 https://play.golang.org/p/S2OpgftqzE2
 ### 7. What are the benefits of Go Module (reference its commands)?
@@ -141,7 +141,7 @@ https://gobyexample.com/rate-limiting
 - Go programs have hundreds of thousands of stacks. They are managed by the Go scheduler and are always preempted at GC safepoints. 
 - The Go scheduler multiplexes Go routines onto OS threads which hopefully run with one OS thread per HW thread. That manage the stacks and their size by copying them and updating pointers in the stack. It’s a (user space not involved kernel interaction) so it scales fairly well.
 https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/ <br />
-https://golang.org/doc/faq#garbage_collection
+https://golang.org/doc/faq#garbage_collection <br>
 https://www.youtube.com/watch?v=q4HoWwdZUHs
 ### 18.how to use channels as a work control mechanism
  (like for/select, or separately the quitChan pattern)
@@ -225,5 +225,5 @@ https://dave.cheney.net/2017/04/30/if-a-map-isnt-a-reference-variable-what-is-it
 -  The elements of the existing array are copied to this new array and a new slice reference for this new array is returned. The capacity of the new slice is now twice that of the old slice
 -  Memory Optimisation
 Slices hold a reference to the underlying array. As long as the slice is in memory, the array cannot be garbage collected. This might be of concern when it comes to memory management. Lets assume that we have a very large array and we are interested in processing only a small part of it. Henceforth we create a slice from that array and start processing the slice. The important thing to be noted here is that the array will still be in memory since the slice references it.
-- One way to solve this problem is to use the copy function func copy(dst, src []T) int to make a copy of that slice. This way we can use the new slice and the original array can be garbage collected.
+- One way to solve this problem is to use the copy function func copy(dst, src []T) int to make a copy of that slice. This way we can use the new slice and the original array can be garbage collected.<br>
 https://play.golang.org/p/pcLCSsQzNaT
